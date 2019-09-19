@@ -1,0 +1,124 @@
+#!/bin/sh
+
+check() {
+	echo "#\c"
+}
+
+LIBDIRS=(stdio string)
+
+rm -f Makefile
+check
+
+DATE=`date "+%Y/%m/%d %H:%M:%S"`
+
+echo "# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: $DATE by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: $DATE by mhouppin    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #" > Makefile
+
+for DIR in ${LIBDIRS[@]}
+do
+	rm -f $DIR/Makefile
+	cat Makefile > $DIR/Makefile
+	check
+done
+
+echo "
+all clean fclean re:" >> Makefile
+
+C=0
+
+for DIR in ${LIBDIRS[@]}
+do
+	(( C += 1 ))
+	echo "\tmake \$@ -C $DIR" >> Makefile
+	check
+done
+
+echo "
+.PHONY: all clean fclean re" >> Makefile
+
+echo
+
+I=0
+
+for DIR in ${LIBDIRS[@]}
+do
+	(( I += 1 ))
+	printf "Makefile %.2d/%.2d... " $I $C
+
+	echo >> $DIR/Makefile
+	check
+
+	echo "NAME := ../lib$DIR.a\n" >> $DIR/Makefile
+	check
+
+	echo "SOURCES := \c" >> $DIR/Makefile
+	check
+
+	SOURCES=`ls $DIR/sources | grep '.c$'`
+
+	for SOURCE in ${SOURCES[@]}
+	do
+		echo "\\" >> $DIR/Makefile
+		echo "\tsources/$SOURCE \c" >> $DIR/Makefile
+	done
+
+	echo "\n" >> $DIR/Makefile
+	check
+
+	echo "OBJECTS := \$(SOURCES:sources/%.c=objects/%.o)" >> $DIR/Makefile
+	check
+
+	echo "DEPENDS := \$(SOURCES:sources/%.c=objects/%.d)\n" >> $DIR/Makefile
+	check
+
+	echo "all: \$(NAME)\n" >> $DIR/Makefile
+	check
+
+	echo "\$(NAME): \$(OBJECTS)" >> $DIR/Makefile
+	check
+
+	echo "\tar -rc \$@ \$^\n" >> $DIR/Makefile
+	check
+
+	echo "objects/%.o: sources/%.c objects" >> $DIR/Makefile
+	check
+
+	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
+	check
+
+	echo "objects:" >> $DIR/Makefile
+	check
+
+	echo "\tmkdir -p \$@\n" >> $DIR/Makefile
+	check
+
+	echo "clean:" >> $DIR/Makefile
+	check
+
+	echo "\trm -rf objects\n" >> $DIR/Makefile
+	check
+
+	echo "fclean: clean" >> $DIR/Makefile
+	check
+
+	echo "\trm -f \$(NAME)\n" >> $DIR/Makefile
+	check
+
+	echo "re: fclean all\n" >> $DIR/Makefile
+	check
+
+	echo ".PHONY: all clean fclean re" >> $DIR/Makefile
+	echo
+done
+
+echo "Done."

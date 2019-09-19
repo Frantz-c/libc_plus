@@ -5,14 +5,14 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/19 09:52:24 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/19 10:31:48 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/19 11:11:04 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/19 11:11:04 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 all clean fclean re:
-	make $@ -C string
 	make $@ -C stdio
+	make $@ -C string
 
 .PHONY: all clean fclean re
