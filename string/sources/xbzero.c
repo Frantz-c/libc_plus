@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstring.h                                        .::    .:/ .      .::   */
+/*   xbzero.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/19 10:15:26 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:00:35 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:13:54 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef XSTRING_H
-# define XSTRING_H
+#include "xstring.h"
 
-# include <stddef.h>
-# include <stdint.h>
+void	xbzero(void *b, size_t size)
+{
+	uintptr_t	bp;	
 
-# if defined(UINT64_MAX)
-#  define HMASK		0x8080808080808080ul
-#  define LMASK		0x0101010101010101ul
-# else
-#  define HMASK		0x80808080ul
-#  define LMASK		0x01010101ul
-# endif
-
-void	xbzero(void *b, size_t size);
-void	*xmemchr(const void *s, int c, size_t n);
-void	*xmemcpy(void *dst, const void *src, size_t size);
-void	*xmemset(void *b, int c, size_t size);
-
-#endif
+	bp = (uintptr_t)b;
+	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	{
+		*(char *)bp = 0;
+		bp++;
+		size--;
+	}
+	while (size >= sizeof(intmax_t))
+	{
+		*(intmax_t *)bp = 0;
+		bp += sizeof(intmax_t);
+		size -= sizeof(intmax_t);
+	}
+	while (size)
+	{
+		*(char *)bp = 0;
+		bp++;
+		size--;
+	}
+}

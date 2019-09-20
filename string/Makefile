@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/19 11:11:04 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/19 11:11:04 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/20 11:13:43 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/20 11:13:43 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,6 +14,9 @@
 NAME := ../libstring.a
 
 SOURCES := \
+	sources/xbzero.c \
+	sources/xmemchr.c \
+	sources/xmemcpy.c \
 	sources/xmemset.c 
 
 OBJECTS := $(SOURCES:sources/%.c=objects/%.o)
