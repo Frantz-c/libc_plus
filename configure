@@ -4,6 +4,8 @@ check() {
 	echo "#\c"
 }
 
+make fclean >& /dev/null
+
 LIBDIRS=(stdio string)
 
 rm -f Makefile

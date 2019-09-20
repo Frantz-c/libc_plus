@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 10:15:26 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:00:35 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 11:45:41 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,8 +26,19 @@
 # endif
 
 void	xbzero(void *b, size_t size);
-void	*xmemchr(const void *s, int c, size_t n);
+void	*xmemchr(const void *s, int c, size_t size);
+int		xmemcmp(const void *s1, const void *s2, size_t size);
 void	*xmemcpy(void *dst, const void *src, size_t size);
+void	*xmemmove(void *dst, const void *src, size_t size);
+void	*xmemrcpy(void *dst, const void *src, size_t size);
 void	*xmemset(void *b, int c, size_t size);
+char	*xstrcat(char *dst, const char *src);
+char	*xstrchr(const char *s, int c);
+int		xstrcmp(const char *s1, const char *s2);
+char	*xstrcpy(char *dst, const char *src);
+size_t	xstrcspn(const char *s, const char *reject);
+size_t	xstrlen(const char *s);
+char	*xstrncat(char *dst, const char *src, size_t size);
+int		xstrncmp(const char *s1, const char *s2, size_t size);
 
 #endif

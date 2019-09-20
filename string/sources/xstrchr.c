@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xbzero.c                                         .::    .:/ .      .::   */
+/*   xstrchr.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:47:43 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 11:28:49 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:30:31 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-void	xbzero(void *b, size_t size)
+char	*xstrchr(const char *s, int c)
 {
-	uintptr_t	bp;
-
-	bp = (uintptr_t)b;
-	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	while (*s != '\0')
 	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	while (size >= sizeof(intmax_t))
-	{
-		*(intmax_t *)bp = 0;
-		bp += sizeof(intmax_t);
-		size -= sizeof(intmax_t);
-	}
-	while (size)
-	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
-	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }

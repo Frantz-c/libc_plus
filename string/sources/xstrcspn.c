@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xbzero.c                                         .::    .:/ .      .::   */
+/*   xstrcspn.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:47:43 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:48:11 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-void	xbzero(void *b, size_t size)
+size_t	strcspn(const char *s, const char *charset)
 {
-	uintptr_t	bp;
+	static unsigned char	block[256];
+	const char				*sp = s;
 
-	bp = (uintptr_t)b;
-	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	xbzero(block, 256);
+	while (*charset)
 	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
+		block[*(unsigned char *)charset] = 1;
+		charset++;
 	}
-	while (size >= sizeof(intmax_t))
+	while (*sp)
 	{
-		*(intmax_t *)bp = 0;
-		bp += sizeof(intmax_t);
-		size -= sizeof(intmax_t);
+		if (block[*(unsigned char *)sp])
+			break ;
+		sp++;
 	}
-	while (size)
-	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
-	}
+	return ((size_t)(sp - s));
 }

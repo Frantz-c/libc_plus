@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xbzero.c                                         .::    .:/ .      .::   */
+/*   xstrcmp.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:47:43 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 11:30:51 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:34:29 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-void	xbzero(void *b, size_t size)
+int		xstrcmp(const char *s1, const char *s2)
 {
-	uintptr_t	bp;
-
-	bp = (uintptr_t)b;
-	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	while (*s1)
 	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
+		if (*s1 != *s2)
+			break ;
+		s1++;
+		s2++;
 	}
-	while (size >= sizeof(intmax_t))
-	{
-		*(intmax_t *)bp = 0;
-		bp += sizeof(intmax_t);
-		size -= sizeof(intmax_t);
-	}
-	while (size)
-	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
-	}
+	return ((int)*(const unsigned char *)s1 - (int)*(const unsigned char *)s2);
 }

@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xbzero.c                                         .::    .:/ .      .::   */
+/*   xstrncat.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:47:43 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 11:42:22 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:45:05 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-void	xbzero(void *b, size_t size)
+char	*xstrncat(char *dst, const char *src, size_t size)
 {
-	uintptr_t	bp;
+	char	*ret;
 
-	bp = (uintptr_t)b;
-	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	ret = dst;
+	while (*dst)
+		dst++;
+	while (*src && size)
 	{
-		*(char *)bp = 0;
-		bp++;
+		*dst = *src;
+		dst++;
+		src++;
 		size--;
 	}
-	while (size >= sizeof(intmax_t))
-	{
-		*(intmax_t *)bp = 0;
-		bp += sizeof(intmax_t);
-		size -= sizeof(intmax_t);
-	}
-	while (size)
-	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
-	}
+	*dst = '\0';
+	return (ret);
 }

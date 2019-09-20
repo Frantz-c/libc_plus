@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xbzero.c                                         .::    .:/ .      .::   */
+/*   xmemcmp.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 10:53:07 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:47:43 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 11:15:55 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 11:18:47 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-void	xbzero(void *b, size_t size)
+int		xmemcmp(const void *s1, const void *s2, size_t n)
 {
-	uintptr_t	bp;
+	intptr_t	s1p;
+	intptr_t	s2p;
 
-	bp = (uintptr_t)b;
-	while ((bp & (sizeof(intmax_t) - 1)) && size)
+	s1p = (intptr_t)s1;
+	s2p = (intptr_t)s2;
+	while (n)
 	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
+		if (*(unsigned char *)s1p != *(unsigned char *)s2p)
+			return ((int)*(unsigned char *)s1p - (int)*(unsigned char *)s2p);
+		s1p++;
+		s2p++;
+		n--;
 	}
-	while (size >= sizeof(intmax_t))
-	{
-		*(intmax_t *)bp = 0;
-		bp += sizeof(intmax_t);
-		size -= sizeof(intmax_t);
-	}
-	while (size)
-	{
-		*(char *)bp = 0;
-		bp++;
-		size--;
-	}
+	return (0);
 }
