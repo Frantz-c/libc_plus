@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/20 11:47:57 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/20 11:47:57 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/20 13:38:07 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/20 13:38:07 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -25,7 +25,7 @@ $(NAME): $(OBJECTS)
 	ar -rc $@ $^
 
 objects/%.o: sources/%.c objects
-	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -c -MMD -I include -o $@ $<
+	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o $@ $<
 
 objects:
 	mkdir -p $@

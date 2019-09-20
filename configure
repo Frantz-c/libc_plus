@@ -95,7 +95,7 @@ do
 	echo "objects/%.o: sources/%.c objects" >> $DIR/Makefile
 	check
 
-	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
+	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
 	check
 
 	echo "objects:" >> $DIR/Makefile

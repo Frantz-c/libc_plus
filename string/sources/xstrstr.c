@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstrcspn.c                                       .::    .:/ .      .::   */
+/*   xstrstr.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:56:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 12:47:54 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 12:57:34 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-size_t	strcspn(const char *s, const char *charset)
+char	*xstrstr(const char *big, const char *little)
 {
-	unsigned char	block[256];
-	const char		*sp = s;
+	size_t	llen;
+	char	*next_ptr;
+	char	lchar;
 
-	xbzero(block, 256);
-	while (*charset)
+	lchar = *little;
+	if (!lchar)
+		return ((char *)big);
+	llen = xstrlen(little);
+	next_ptr = xstrchr(big, lchar);
+	while (next_ptr)
 	{
-		block[*(const unsigned char *)charset] = 1;
-		charset++;
-	}
-	while (*sp)
-	{
-		if (block[*(const unsigned char *)sp])
+		if (xstrncmp(next_ptr, little, llen) == 0)
 			break ;
-		sp++;
+		next_ptr = xstrchr(next_ptr + 1, lchar);
 	}
-	return ((size_t)(sp - s));
+	return (next_ptr);
 }

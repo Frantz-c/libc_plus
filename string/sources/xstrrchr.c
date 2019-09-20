@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstrcspn.c                                       .::    .:/ .      .::   */
+/*   xstrrchr.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:56:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 12:44:20 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 12:58:06 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-size_t	strcspn(const char *s, const char *charset)
+char	*xstrrchr(const char *s, int c)
 {
-	unsigned char	block[256];
-	const char		*sp = s;
+	const char	*ret;
 
-	xbzero(block, 256);
-	while (*charset)
+	ret = NULL;
+	while (*s)
 	{
-		block[*(const unsigned char *)charset] = 1;
-		charset++;
+		if (*s == c)
+			ret = s;
+		s++;
 	}
-	while (*sp)
-	{
-		if (block[*(const unsigned char *)sp])
-			break ;
-		sp++;
-	}
-	return ((size_t)(sp - s));
+	if (c == '\0')
+		return ((char *)s);
+	return ((char *)ret);
 }

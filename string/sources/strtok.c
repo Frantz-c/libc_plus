@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstrcspn.c                                       .::    .:/ .      .::   */
+/*   strtok.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:56:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 12:59:03 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 13:01:07 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-size_t	strcspn(const char *s, const char *charset)
+char	*xstrtok(char *str, const char *sep)
 {
-	unsigned char	block[256];
-	const char		*sp = s;
+	static char	*old;
 
-	xbzero(block, 256);
-	while (*charset)
-	{
-		block[*(const unsigned char *)charset] = 1;
-		charset++;
-	}
-	while (*sp)
-	{
-		if (block[*(const unsigned char *)sp])
-			break ;
-		sp++;
-	}
-	return ((size_t)(sp - s));
+	return (xstrtok_r(str, sep, &old));
 }

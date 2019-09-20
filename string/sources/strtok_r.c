@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstrcspn.c                                       .::    .:/ .      .::   */
+/*   strtok_r.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:56:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 13:01:37 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 13:05:02 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-size_t	strcspn(const char *s, const char *charset)
+char	*xstrtok_r(char *str, const char *sep, char **old)
 {
-	unsigned char	block[256];
-	const char		*sp = s;
+	char	*end;
 
-	xbzero(block, 256);
-	while (*charset)
+	if (str == NULL)
+		str = *old;
+	if (*str == '\0')
 	{
-		block[*(const unsigned char *)charset] = 1;
-		charset++;
+		*old = str;
+		return (NULL);
 	}
-	while (*sp)
+	str += xstrspn(str, sep);
+	if (*str == '\0')
 	{
-		if (block[*(const unsigned char *)sp])
-			break ;
-		sp++;
+		*old = str;
+		return (NULL);
 	}
-	return ((size_t)(sp - s));
+	end = str + xstrcspn(str, sep);
+	if (*end == '\0')
+	{
+		*old = end;
+		return (str);
+	}
+	*end = '\0';
+	*old = end + 1;
+	return (str);
 }

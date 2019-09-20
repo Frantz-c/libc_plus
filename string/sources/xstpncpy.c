@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   xstrcspn.c                                       .::    .:/ .      .::   */
+/*   xstpncpy.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/09/20 11:38:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 11:56:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/20 13:23:12 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/20 13:25:57 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstring.h"
 
-size_t	strcspn(const char *s, const char *charset)
+char	*xstpncpy(char *dst, const char *src, size_t size)
 {
-	unsigned char	block[256];
-	const char		*sp = s;
+	char	*ret;
 
-	xbzero(block, 256);
-	while (*charset)
+	while (*src && size)
 	{
-		block[*(const unsigned char *)charset] = 1;
-		charset++;
+		*dst = *src;
+		dst++;
+		src++;
+		size--;
 	}
-	while (*sp)
+	ret = dst;
+	while (size)
 	{
-		if (block[*(const unsigned char *)sp])
-			break ;
-		sp++;
+		*dst = '\0';
+		dst++;
+		size--;
 	}
-	return ((size_t)(sp - s));
+	return (ret);
 }
