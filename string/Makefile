@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/20 13:38:07 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/20 13:38:07 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/20 14:23:34 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/20 14:23:34 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,6 +21,7 @@ SOURCES := \
 	sources/xmemchr.c \
 	sources/xmemcmp.c \
 	sources/xmemcpy.c \
+	sources/xmemmem.c \
 	sources/xmemmove.c \
 	sources/xmemrcpy.c \
 	sources/xmemset.c \
@@ -38,6 +39,7 @@ SOURCES := \
 	sources/xstrncpy.c \
 	sources/xstrndup.c \
 	sources/xstrnlen.c \
+	sources/xstrnstr.c \
 	sources/xstrpbrk.c \
 	sources/xstrrchr.c \
 	sources/xstrspn.c \

@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 10:15:26 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 13:36:19 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 14:22:07 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,7 @@ void	*xmemccpy(void *dst, const void *src, int c, size_t size);
 void	*xmemchr(const void *s, int c, size_t size);
 int		xmemcmp(const void *s1, const void *s2, size_t size);
 void	*xmemcpy(void *dst, const void *src, size_t size);
+void	*xmemmem(const void *big, size_t blen, const void *little, size_t llen);
 void	*xmemmove(void *dst, const void *src, size_t size);
 void	*xmemrcpy(void *dst, const void *src, size_t size);
 void	*xmemset(void *b, int c, size_t size);
@@ -47,6 +48,7 @@ int		xstrncmp(const char *s1, const char *s2, size_t size);
 char	*xstrncpy(char *dst, const char *src, size_t size);
 char	*xstrndup(const char *s, size_t size);
 size_t	xstrnlen(const char *s, size_t size);
+char	*xstrnstr(const char *big, const char *little, size_t size);
 char	*xstrpbrk(const char *s, const char *search);
 char	*xstrrchr(const char *s, int c);
 size_t	xstrspn(const char *s, const char *accept);
