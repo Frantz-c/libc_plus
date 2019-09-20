@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/20 14:23:34 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/20 14:23:34 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/20 14:43:49 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/20 14:43:49 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -33,6 +33,8 @@ SOURCES := \
 	sources/xstrcpy.c \
 	sources/xstrcspn.c \
 	sources/xstrdup.c \
+	sources/xstrlcat.c \
+	sources/xstrlcpy.c \
 	sources/xstrlen.c \
 	sources/xstrncat.c \
 	sources/xstrncmp.c \

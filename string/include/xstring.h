@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 10:15:26 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 14:22:07 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 14:33:05 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,8 @@ int		xstrcmp(const char *s1, const char *s2);
 char	*xstrcpy(char *dst, const char *src);
 size_t	xstrcspn(const char *s, const char *reject);
 char	*xstrdup(const char *s);
+size_t	xstrlcat(char *dst, const char *src, size_t size);
+size_t	xstrlcpy(char *dst, const char *src, size_t size);
 size_t	xstrlen(const char *s);
 char	*xstrncat(char *dst, const char *src, size_t size);
 int		xstrncmp(const char *s1, const char *s2, size_t size);
