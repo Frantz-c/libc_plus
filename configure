@@ -6,7 +6,7 @@ check() {
 
 make fclean >& /dev/null
 
-LIBDIRS=(stdio string)
+LIBDIRS=(stdio string vector)
 
 rm -f Makefile
 check

@@ -11,15 +11,14 @@
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME := ../libstdio.a
+NAME := ../libvector.a
 
 SOURCES := \
-	sources/xfputchar.c \
-	sources/xfputs.c \
-	sources/xfputstr.c \
-	sources/xputchar.c \
-	sources/xputs.c \
-	sources/xputstr.c 
+	sources/vbsf.c \
+	sources/vinit.c \
+	sources/vitem.c \
+	sources/vmemory.c \
+	sources/vset.c 
 
 OBJECTS := $(SOURCES:sources/%.c=objects/%.o)
 DEPENDS := $(SOURCES:sources/%.c=objects/%.d)
