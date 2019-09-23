@@ -5,20 +5,22 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/23 12:58:39 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/23 12:58:39 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/23 14:24:53 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/23 14:30:22 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME := ../libvector.a
+NAME := ../libtmath.a
 
 SOURCES := \
-	sources/vbsf.c \
-	sources/vinit.c \
-	sources/vitem.c \
-	sources/vmemory.c \
-	sources/vset.c 
+	sources/vector_add.c \
+	sources/vector_div.c \
+	sources/vector_init.c \
+	sources/vector_mul.c \
+	sources/vector_normalize.c \
+	sources/vector_scalar_prod.c \
+	sources/vector_sub.c 
 
 OBJECTS := $(SOURCES:sources/%.c=objects/%.o)
 DEPENDS := $(SOURCES:sources/%.c=objects/%.d)
@@ -30,7 +32,7 @@ $(NAME): $(OBJECTS)
 
 objects/%.o: sources/%.c
 	@if test ! -d objects; then mkdir -p objects; fi
-	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o $@ $<
+	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fomit-frame-pointer -fno-stack-protector -c -MMD -I include -o $@ $<
 
 clean:
 	rm -rf objects

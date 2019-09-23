@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/23 12:58:39 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/23 12:58:39 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/23 14:24:53 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/23 14:24:53 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -31,7 +31,7 @@ $(NAME): $(OBJECTS)
 
 objects/%.o: sources/%.c
 	@if test ! -d objects; then mkdir -p objects; fi
-	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o $@ $<
+	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fomit-frame-pointer -fno-stack-protector -c -MMD -I include -o $@ $<
 
 clean:
 	rm -rf objects

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libvector_core.h                                 .::    .:/ .      .::   */
+/*   vector_normalize.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/07/25 17:20:09 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/23 13:04:32 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/23 14:22:17 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/23 14:34:01 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBVECTOR_CORE_H
-# define LIBVECTOR_CORE_H
+#include "tmath.h"
 
-# include "libvector.h"
-# include "../../string/include/xstring.h"
+void	vector_normalize(t_vector *v)
+{
+	float	length;
 
-# define VNEXT	:
-
-size_t	vbsf(size_t value);
-size_t	vsqrt(size_t n);
-
-#endif
+	length = sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
+	v->x /= length;
+	v->y /= length;
+	v->z /= length;
+	v->w /= length;
+}

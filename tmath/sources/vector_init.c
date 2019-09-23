@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   vbsf.c                                           .::    .:/ .      .::   */
+/*   vector_init.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/08/30 09:28:01 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/30 09:31:44 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/09/23 13:19:31 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/09/23 13:28:31 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libvector_core.h"
+#include "tmath.h"
 
-size_t	vbsf(size_t value)
+void	vector_init(t_vector *v)
 {
-	size_t	i;
-
-	if (value == 0)
-		return (UNSHIFTABLE);
-	if ((value & (value - 1)) != 0)
-		return (UNSHIFTABLE);
-	i = 0;
-	while ((value >>= 1) != 0)
-		i++;
-	return (i);
+	v->x = 0.0f;
+	v->y = 0.0f;
+	v->z = 0.0f;
+	v->w = 0.0f;
 }

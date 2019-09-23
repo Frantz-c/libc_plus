@@ -6,7 +6,7 @@ check() {
 
 make fclean >& /dev/null
 
-LIBDIRS=(stdio string vector)
+LIBDIRS=(stdio string tmath)
 
 rm -f Makefile
 check
@@ -98,7 +98,7 @@ do
 	echo "\t@if test ! -d objects; then mkdir -p objects; fi" >> $DIR/Makefile
 	check
 
-	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
+	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fomit-frame-pointer -fno-stack-protector -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
 	check
 
 	echo "clean:" >> $DIR/Makefile
