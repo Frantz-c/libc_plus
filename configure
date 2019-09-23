@@ -92,16 +92,13 @@ do
 	echo "\tar -rc \$@ \$^\n" >> $DIR/Makefile
 	check
 
-	echo "objects/%.o: sources/%.c objects" >> $DIR/Makefile
+	echo "objects/%.o: sources/%.c" >> $DIR/Makefile
+	check
+
+	echo "\t@if test ! -d objects; then mkdir -p objects; fi" >> $DIR/Makefile
 	check
 
 	echo "\t\$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o \$@ \$<\n" >> $DIR/Makefile
-	check
-
-	echo "objects:" >> $DIR/Makefile
-	check
-
-	echo "\tmkdir -p \$@\n" >> $DIR/Makefile
 	check
 
 	echo "clean:" >> $DIR/Makefile

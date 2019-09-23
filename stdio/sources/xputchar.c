@@ -6,14 +6,14 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 10:26:03 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 10:26:28 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/23 09:27:53 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "xstdio.h"
 
-int		xputchar(int c)
+int		xputchar(char c)
 {
 	return ((int)write(STDOUT_FILENO, &c, 1));
 }

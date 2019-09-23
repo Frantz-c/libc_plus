@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/09/20 14:43:49 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/20 14:43:49 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Created: 2019/09/23 09:31:16 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/09/23 09:31:16 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,7 +14,12 @@
 NAME := ../libstdio.a
 
 SOURCES := \
-	sources/xputchar.c 
+	sources/xfputchar.c \
+	sources/xfputs.c \
+	sources/xfputstr.c \
+	sources/xputchar.c \
+	sources/xputs.c \
+	sources/xputstr.c 
 
 OBJECTS := $(SOURCES:sources/%.c=objects/%.o)
 DEPENDS := $(SOURCES:sources/%.c=objects/%.d)
@@ -24,11 +29,9 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar -rc $@ $^
 
-objects/%.o: sources/%.c objects
+objects/%.o: sources/%.c
+	@if test ! -d objects; then mkdir -p objects; fi
 	$(CC) -Wall -Wextra -Werror -Wpedantic -O3 -march=native -fno-builtin -fno-stack-protector -c -MMD -I include -o $@ $<
-
-objects:
-	mkdir -p $@
 
 clean:
 	rm -rf objects
